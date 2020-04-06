@@ -37,7 +37,56 @@ class _News extends StatelessWidget {
         _CardTopBar(this.news, this.index),
         _CardTitle(news),
         _CardImage(news),
+        _CardBody(news),
+        SizedBox(height: 10,),
+        _CardButtons(),
+
+        Divider(),
       ],
+    );
+  }
+}
+
+
+class _CardButtons extends StatelessWidget {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          RawMaterialButton(
+            onPressed: (){},
+            fillColor: myTheme.accentColor,
+            shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
+            child: Icon(Icons.star_border),
+          ),
+          SizedBox(width: 10,),
+          RawMaterialButton( 
+            onPressed: (){},
+            fillColor: Colors.blue,
+            shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)),
+            child: Icon(Icons.more),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CardBody extends StatelessWidget {
+
+  final Article news;
+  const _CardBody(this.news);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Text((news.description != null ) ? news.description : ''),
     );
   }
 }
@@ -50,7 +99,18 @@ class _CardImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Hi word"),
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(50),bottomRight: Radius.circular(50   )),
+            child: Container(
+          child: (news.urlToImage != null) ?
+          FadeInImage(
+            placeholder: AssetImage('assets/img/giphy.gif'),
+            image: NetworkImage(news.urlToImage),
+          )
+          :Image(image: AssetImage('assets/img/no-image.png'),)
+        ),
+      ),
     );
   }
 }
