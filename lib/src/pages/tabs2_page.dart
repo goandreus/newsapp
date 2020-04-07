@@ -26,7 +26,6 @@ class _ListCategory extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: categories.length,
       itemBuilder: (BuildContext context, int index) {
-
         final cateName = categories[index].name;
 
         return Container(
@@ -61,6 +60,8 @@ class _CategoryButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         print('${categories.name}');
+        final newsService = Provider.of<NewsService>(context, listen: false);
+        newsService.selectedCategory = categories.name;
       },
       child: Container(
         width: 40,
