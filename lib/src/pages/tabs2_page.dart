@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/src/models/category_model.dart';
 import 'package:newsapp/src/services/news_service.dart';
+import 'package:newsapp/src/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 class Tab2Page extends StatelessWidget {
@@ -17,8 +18,10 @@ class Tab2Page extends StatelessWidget {
 }
 
 class _ListCategory extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     final categories = Provider.of<NewsService>(context).categories;
 
     return ListView.builder(
@@ -57,6 +60,8 @@ class _CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final newsService = Provider.of<NewsService>(context);
+
     return GestureDetector(
       onTap: () {
         print('${categories.name}');
@@ -73,7 +78,7 @@ class _CategoryButton extends StatelessWidget {
         ),
         child: Icon(
           categories.icon,
-          color: Colors.black54,
+          color: (newsService.selectedCategory == this.categories.name)  ? myTheme.accentColor : Colors.black54,
         ),
       ),
     );
