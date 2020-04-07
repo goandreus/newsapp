@@ -4,9 +4,8 @@ import 'package:newsapp/src/models/category_model.dart';
 import 'package:newsapp/src/models/news_models.dart';
 import 'package:http/http.dart' as http;
 
-final _URL_NEWS = 'https://newsapi.org/v2/';  
-final _APIKEY = '42bd9676e64f4f2f81b64cc88d038b84';  
- 
+final _URL_NEWS = 'https://newsapi.org/v2/';
+final _APIKEY = '42bd9676e64f4f2f81b64cc88d038b84';
 
 class NewsService with ChangeNotifier {
   List<Article> headlines = [];
@@ -20,8 +19,8 @@ class NewsService with ChangeNotifier {
     Category(FontAwesomeIcons.volleyballBall, 'sports'),
     Category(FontAwesomeIcons.memory, 'technology'),
   ];
-  
-  NewsService(){
+
+  NewsService() {
     this.getTopHeadlines();
   }
 
