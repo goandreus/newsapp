@@ -28,6 +28,7 @@ class NewsService with ChangeNotifier {
     categories.forEach((item){
       this.categoryArticles[item.name] = List();
     });
+    this.getArticleByCategory(this._selectedCategory);
   }
 
   get selectedCategory => this._selectedCategory;
@@ -37,6 +38,8 @@ class NewsService with ChangeNotifier {
 
     notifyListeners();
   }
+
+   List<Article> get getAticlesCategoriesSelect => this.categoryArticles[this.selectedCategory];
 
   getTopHeadlines() async {
     final url = '$_URL_NEWS/top-headlines?apiKey=$_APIKEY&country=us';
@@ -52,6 +55,7 @@ class NewsService with ChangeNotifier {
   getArticleByCategory(String category) async {
 
     if(this.categoryArticles[category].length > 0){
+      notifyListeners();
       return  this.categoryArticles[category];
     }
 
